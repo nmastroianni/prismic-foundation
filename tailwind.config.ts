@@ -1,20 +1,73 @@
 import type { Config } from 'tailwindcss'
 
+function withOpacity(variableName: string): any {
+  return ({ opacityValue }: { opacityValue: string | undefined }): string => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variableName}), ${opacityValue})`
+    }
+    return `rgb(var(${variableName}))`
+  }
+}
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/slices/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        outfit: ['var(--font-outfit)'],
+        redhat: ['var(--font-red-hat-text)'],
+      },
+      textColor: {
+        skin: {
+          base: withOpacity('--color-base'),
+          primary: withOpacity('--color-primary'),
+          muted: withOpacity('--color-muted'),
+          secondary: withOpacity('--color-secondary'),
+          neutral: withOpacity('--color-neutral'),
+          inverted: withOpacity('--color-base'),
+        },
+      },
+      backgroundColor: {
+        skin: {
+          fill: withOpacity('--color-primary'),
+          'button-base': withOpacity('--color-base'),
+          'button-base-hover': withOpacity('--color-muted'),
+          'button-primary': withOpacity('--color-primary'),
+          'button-primary-hover': withOpacity('--color-primary-hover'),
+          'button-secondary': withOpacity('--color-secondary'),
+          'button-secondary-hover': withOpacity('--color-secondary-hover'),
+        },
+      },
+      boxShadowColor: {
+        skin: {
+          base: withOpacity('--color-base'),
+          primary: withOpacity('--color-primary'),
+          secondary: withOpacity('--color-secondary'),
+          neutral: withOpacity('--color-neutral'),
+          muted: withOpacity('--color-muted'),
+        },
+      },
+      borderColor: {
+        skin: {
+          base: withOpacity('--color-text-base'),
+          secondary: withOpacity('--color-secondary'),
+          neutral: withOpacity('--color-neutral'),
+        },
+      },
+      gradientColorStops: {
+        skin: {
+          'hue-primary': withOpacity('--color-primary'),
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+  ],
 }
 export default config

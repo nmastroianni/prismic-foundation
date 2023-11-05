@@ -1,3 +1,7 @@
+# A NextJS + Prismic Foundation to Build a Site
+
+This repository is meant to provide you with a customizable NextJS website that is powered by the [Prismic Content Management System](https://prismic.io). This project can be used with their [CLI](https://prismic.io/docs/technical-reference/prismic-cli) allowing you to spin up your own Prismic and GitHub repositories.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

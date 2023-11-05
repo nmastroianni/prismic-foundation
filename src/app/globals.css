@@ -2,26 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --color-primary: 4, 96, 217;
+    --color-primary-hover: 5, 104, 235;
+    --color-secondary: 177, 204, 254;
+    --color-secondary-hover: 242, 242, 242;
+    --color-neutral: 30, 41, 59;
+    --color-base: 242, 242, 242;
+    --color-muted: 191, 219, 254;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  .theme-alternate {
+    --color-primary: 158, 5, 34;
+    --color-primary-hover: 171, 5, 36;
+    --color-secondary: 184, 197, 145;
+    --color-secondary-hover: 160, 171, 126;
+    --color-neutral: 78, 8, 5;
+    --color-base: 255, 244, 212;
+    --color-muted: 243, 225, 232;
+  }
+  .full-bleed {
+    box-shadow: 0 0 0 100vmax var(--color-fill);
+    clip-path: inset(0 -100vmax);
+  }
 }

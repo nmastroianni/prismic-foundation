@@ -48,7 +48,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
           <PrismicRichText field={slice.primary.description} />
         </span>
         {slice.items.length > 0 && (
-          <div className="flex justify-center gap-x-8">
+          <div className="flex flex-col justify-center gap-8 lg:flex-row">
             {isFilled.link(slice.items[0].button_link) &&
               slice.items.map((item, index) => (
                 <ButtonLink

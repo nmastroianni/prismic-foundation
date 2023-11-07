@@ -4,6 +4,7 @@ import { PrismicPreview } from '@prismicio/next'
 import { cn } from '@/app/lib/cn'
 import { Outfit, Red_Hat_Text } from 'next/font/google'
 import './globals.css'
+import Navbar from './components/Navbar'
 
 /**
  * Heading & Body fonts
@@ -52,9 +53,10 @@ export default async function RootLayout({
           'flex min-h-screen flex-col justify-between',
           redhattext.variable,
           outfit.variable,
-          { 'theme-happy-holidays': settings.data.site_theme === 'Holidays' },
+          { 'theme-alternate': settings.data.site_theme === 'Alternate' },
         )}
       >
+        <Navbar {...settings} />
         {children}
         <PrismicPreview repositoryName={repositoryName} />
       </body>

@@ -21,7 +21,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={cn(
-        'relative mx-auto flex h-screen items-center justify-center overflow-hidden bg-skin-fill',
+        'relative mx-auto flex h-screen items-center justify-center overflow-hidden bg-skin-fill lg:h-[calc(100vh-72px)]',
         { 'theme-alternate': slice.primary.theme === 'Alternate' },
       )}
     >
@@ -55,6 +55,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
                   field={item.button_link}
                   color={index === 0 ? item.button_color : 'Ghost'}
                   key={item.button_label}
+                  className="border border-skin-base"
                 >
                   {item.button_label}
                 </ButtonLink>

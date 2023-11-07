@@ -53,7 +53,7 @@ const config: Config = {
       },
       borderColor: {
         skin: {
-          base: withOpacity('--color-text-base'),
+          base: withOpacity('--color-base'),
           secondary: withOpacity('--color-secondary'),
           neutral: withOpacity('--color-neutral'),
         },

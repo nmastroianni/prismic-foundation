@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
-type HomepageDocumentDataSlicesSlice = HeroSlice
+type HomepageDocumentDataSlicesSlice = ScrollerSlice | HeroSlice
 
 /**
  * Content for Homepage documents
@@ -295,6 +295,88 @@ type HeroSliceVariation = HeroSliceDefault
  */
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>
 
+/**
+ * Primary content in *Scroller → Primary*
+ */
+export interface ScrollerSliceDefaultPrimary {
+  /**
+   * Heading field in *Scroller → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: scroller.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField
+
+  /**
+   * Speed field in *Scroller → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Slow
+   * - **API ID Path**: scroller.primary.speed
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  speed: prismic.SelectField<'Slow' | 'Medium' | 'Fast', 'filled'>
+
+  /**
+   * Scroll Direction field in *Scroller → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: scroller.primary.scroll_direction
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  scroll_direction: prismic.BooleanField
+}
+
+/**
+ * Primary content in *Scroller → Items*
+ */
+export interface ScrollerSliceDefaultItem {
+  /**
+   * Image field in *Scroller → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: scroller.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+}
+
+/**
+ * Default variation for Scroller Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScrollerSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<ScrollerSliceDefaultPrimary>,
+  Simplify<ScrollerSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *Scroller*
+ */
+type ScrollerSliceVariation = ScrollerSliceDefault
+
+/**
+ * Scroller Shared Slice
+ *
+ * - **API ID**: `scroller`
+ * - **Description**: Scroller
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScrollerSlice = prismic.SharedSlice<
+  'scroller',
+  ScrollerSliceVariation
+>
+
 declare module '@prismicio/client' {
   interface CreateClient {
     (
@@ -317,6 +399,11 @@ declare module '@prismicio/client' {
       HeroSliceDefaultItem,
       HeroSliceVariation,
       HeroSliceDefault,
+      ScrollerSlice,
+      ScrollerSliceDefaultPrimary,
+      ScrollerSliceDefaultItem,
+      ScrollerSliceVariation,
+      ScrollerSliceDefault,
     }
   }
 }

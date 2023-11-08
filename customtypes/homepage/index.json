@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "scroller": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             }

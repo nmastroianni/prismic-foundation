@@ -50,37 +50,39 @@ const Scroller = ({ slice }: ScrollerProps): JSX.Element => {
     }
   }, [])
   return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="scroller mx-auto my-8 max-w-screen-lg"
-      data-speed={`${slice.primary.speed?.toLowerCase()}`}
-      data-direction={`${slice.primary.scroll_direction ? 'right' : 'left'}`}
-    >
+    <section className="my-4 grid place-content-center">
       {isFilled.richText(slice.primary.heading) && (
         <PrismicRichText
           field={slice.primary.heading}
           components={{
             heading2: ({ children }) => (
-              <h2 className="mb-4 mt-6 text-center font-outfit text-5xl font-bold text-skin-primary">
+              <h2 className="mb-4 mt-6 text-center font-outfit text-3xl font-bold text-skin-primary md:text-4xl lg:text-5xl">
                 {children}
               </h2>
             ),
           }}
         />
       )}
-      <ul className="scroller__inner relative flex flex-wrap gap-4 py-4">
-        {slice.items.length > 0 &&
-          slice.items.map(item => (
-            <li key={item.image.url}>
-              <PrismicNextImage
-                field={item.image}
-                fallbackAlt=""
-                className="h-[300px] w-[400px]"
-              />
-            </li>
-          ))}
-      </ul>
+      <div
+        data-slice-type={slice.slice_type}
+        data-slice-variation={slice.variation}
+        className="scroller max-w-screen-lg"
+        data-speed={`${slice.primary.speed?.toLowerCase()}`}
+        data-direction={`${slice.primary.scroll_direction ? 'right' : 'left'}`}
+      >
+        <ul className="scroller__inner relative flex flex-wrap gap-4 py-4">
+          {slice.items.length > 0 &&
+            slice.items.map(item => (
+              <li key={item.image.url}>
+                <PrismicNextImage
+                  field={item.image}
+                  fallbackAlt=""
+                  className="h-[300px] w-[400px]"
+                />
+              </li>
+            ))}
+        </ul>
+      </div>
     </section>
   )
 }

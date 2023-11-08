@@ -9,8 +9,10 @@
 					{
 						"type": "heading2",
 						"content": {
-							"text": "Provide"
-						}
+							"text": "Some Scrolling Images",
+							"spans": []
+						},
+						"direction": "ltr"
 					}
 				]
 			},
@@ -31,7 +33,6 @@
 					[
 						"image",
 						{
-							"__TYPE__": "ImageContent",
 							"url": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHxob3VzZXxlbnwwfHx8fDE2OTk0NDcwNDV8MA&ixlib=rb-4.0.3&q=85",
 							"origin": {
 								"id": "178j8tJrNlc",
@@ -49,6 +50,9 @@
 									"y": 0
 								}
 							},
+							"credits": null,
+							"alt": null,
+							"__TYPE__": "ImageContent",
 							"thumbnails": {}
 						}
 					]
@@ -60,7 +64,6 @@
 					[
 						"image",
 						{
-							"__TYPE__": "ImageContent",
 							"url": "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw5fHxob3VzZXxlbnwwfHx8fDE2OTk0NDcwNDV8MA&ixlib=rb-4.0.3&q=85",
 							"origin": {
 								"id": "aren8nutd1Q",
@@ -78,6 +81,9 @@
 									"y": 0
 								}
 							},
+							"credits": null,
+							"alt": null,
+							"__TYPE__": "ImageContent",
 							"thumbnails": {}
 						}
 					]
@@ -89,7 +95,6 @@
 					[
 						"image",
 						{
-							"__TYPE__": "ImageContent",
 							"url": "https://images.unsplash.com/photo-1430285561322-7808604715df?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyOHx8aG91c2V8ZW58MHx8fHwxNjk5NDQ3MDQ1fDA&ixlib=rb-4.0.3&q=85",
 							"origin": {
 								"id": "pmhdkgRCbtE",
@@ -107,6 +112,9 @@
 									"y": 0
 								}
 							},
+							"credits": null,
+							"alt": null,
+							"__TYPE__": "ImageContent",
 							"thumbnails": {}
 						}
 					]

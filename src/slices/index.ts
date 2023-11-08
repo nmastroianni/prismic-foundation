@@ -3,6 +3,8 @@
 import dynamic from 'next/dynamic'
 
 export const components = {
+  content: dynamic(() => import('./Content')),
   hero: dynamic(() => import('./Hero')),
+  image_with_text: dynamic(() => import('./ImageWithText')),
   scroller: dynamic(() => import('./Scroller')),
 }

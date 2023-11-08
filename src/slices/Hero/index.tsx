@@ -32,13 +32,13 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
         sizes="100vw"
         priority={index === 0}
       />
-      <div className="from-skin-hue-primary via-skin-hue-primary absolute inset-0 h-full w-full bg-gradient-to-br to-transparent opacity-90" />
+      <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-skin-hue-primary via-skin-hue-primary to-transparent opacity-90" />
       <div className="relative mx-auto max-w-screen-xl text-skin-base">
         <PrismicRichText
           field={slice.primary.heading}
           components={{
             heading1: ({ children }) => (
-              <Heading as="h1" size="7xl">
+              <Heading as="h1" size="7xl" className="text-skin-base">
                 {children}
               </Heading>
             ),

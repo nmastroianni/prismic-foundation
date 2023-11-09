@@ -33,7 +33,11 @@ const config: Config = {
       },
       backgroundColor: {
         skin: {
+          base: withOpacity('--color-base'),
           fill: withOpacity('--color-primary'),
+          neutral: withOpacity('--color-neutral'),
+          secondary: withOpacity('--color-secondary'),
+          muted: withOpacity('--color-muted'),
           'button-base': withOpacity('--color-base'),
           'button-base-hover': withOpacity('--color-muted'),
           'button-primary': withOpacity('--color-primary'),

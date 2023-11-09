@@ -19,7 +19,7 @@ export default function Analytics() {
     return null
   }
 
-  return (
+  return GTM_ID ? (
     <>
       <Script
         id="google-analytics-script"
@@ -65,5 +65,7 @@ export default function Analytics() {
         />
       </noscript>
     </>
+  ) : (
+    <></>
   )
 }

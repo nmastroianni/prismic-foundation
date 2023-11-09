@@ -1,9 +1,14 @@
 import type { Metadata } from 'next'
 import { createClient, repositoryName } from '@/prismicio'
+import { Suspense } from 'react'
 import { PrismicPreview } from '@prismicio/next'
 import { cn } from '@/app/lib/cn'
 import { Outfit, Red_Hat_Text } from 'next/font/google'
 import './globals.css'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Analytics from '@/app/components/Analytics'
+import Consent from './components/Consent'
 
 /**
  * Heading & Body fonts
@@ -45,6 +50,9 @@ export default async function RootLayout({
 }) {
   const client = createClient()
   const settings = await client.getSingle('settings')
+  const {
+    data: { navigation },
+  } = settings
   return (
     <html lang="en-US">
       <body
@@ -52,10 +60,16 @@ export default async function RootLayout({
           'flex min-h-screen flex-col justify-between',
           redhattext.variable,
           outfit.variable,
-          { 'theme-happy-holidays': settings.data.site_theme === 'Holidays' },
+          { 'theme-alternate': settings.data.site_theme === 'Alternate' },
         )}
       >
+        <Suspense>
+          <Analytics />
+        </Suspense>
+        <Navbar navigation={navigation} />
         {children}
+        <Footer />
+        <Consent />
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>

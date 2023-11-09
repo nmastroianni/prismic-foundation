@@ -5,7 +5,7 @@ type SectionProps = {
   as?: React.ElementType
   className?: string
   children: React.ReactNode
-  width?: 'full' | '2xl' | 'xl' | 'lg' | 'md'
+  width?: 'full' | '2xl' | 'xl' | 'lg' | 'md' | 'sm'
 }
 
 export default function Section({
@@ -25,6 +25,7 @@ export default function Section({
           'max-w-screen-xl': width === 'xl',
           'max-w-screen-lg': width === 'lg',
           'max-w-screen-md': width === 'md',
+          'max-w-screen-sm': width === 'sm',
         },
         className,
       )}

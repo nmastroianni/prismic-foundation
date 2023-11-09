@@ -69,7 +69,7 @@ export default function Consent() {
             }}
             id="consent-banner"
             className={cn(
-              'bg-color-accent fixed bottom-0 z-10 grid w-full bg-opacity-95 p-3 md:grid-cols-5',
+              'bg-skin-base fixed bottom-0 z-10 grid w-full bg-opacity-95 p-3 md:grid-cols-5',
             )}
           >
             <p className="prose prose-sm mx-auto my-4 px-6 text-left md:col-span-3">
@@ -86,7 +86,7 @@ export default function Consent() {
                   setHideBanner(true)
                 }}
               >
-                <HiX className="text-base-100 h-6 w-6" />
+                <HiX className="h-6 w-6 text-skin-neutral" />
                 <span className="sr-only">Close</span>
               </button>
               <button
@@ -110,7 +110,7 @@ export default function Consent() {
                   setConsent(true)
                   setHideBanner(true)
                 }}
-                className="bg-color-primary text-color-base rounded-xl px-6 py-4 font-bold lg:text-lg"
+                className="rounded-xl bg-skin-button-primary px-6 py-4 font-bold text-skin-base lg:text-lg"
               >
                 Accept All
               </button>

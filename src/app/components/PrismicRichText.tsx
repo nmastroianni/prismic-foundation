@@ -5,7 +5,9 @@ import {
 } from '@prismicio/react'
 import * as prismic from '@prismicio/client'
 import Heading from '@/app/components/Heading'
-import React from 'react'
+import * as React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const defaultComponents: JSXMapSerializer = {
   heading1: ({ children }) => {
@@ -52,19 +54,33 @@ const defaultComponents: JSXMapSerializer = {
   },
   paragraph: ({ children }) => {
     return (
-      <p className="prose lg:prose-lg xl:prose-xl mx-auto my-6 text-inherit lg:my-10">
+      <p className="prose mx-auto my-4 text-inherit lg:prose-lg xl:prose-xl lg:my-2">
         {children}
       </p>
     )
   },
   embed: ({ node }) => {
     return (
-      <div className="mx-auto max-w-screen-sm overflow-hidden rounded shadow-xl">
+      <div className="mx-auto my-4 max-w-screen-sm overflow-hidden rounded-lg shadow-md shadow-skin-neutral lg:my-8">
         <div
           className="aspect-h-9 aspect-w-16"
           dangerouslySetInnerHTML={{ __html: node.oembed.html || '' }}
         />
       </div>
+    )
+  },
+  image: ({ node }) => {
+    return (
+      <Link href={node.url} target="_blank">
+        <Image
+          src={node.url}
+          alt={node.alt || ''}
+          width={node.dimensions.width}
+          height={node.dimensions.height}
+          className="rounded-lg shadow-md shadow-skin-neutral"
+          title={node.alt || ''}
+        />
+      </Link>
     )
   },
 }

@@ -31,6 +31,7 @@ const ImageWithText = ({ slice, index }: ImageWithTextProps): JSX.Element => {
             className={cn('my-6 rounded-lg')}
             fallbackAlt=""
             priority={index < 2}
+            title={slice.primary.image.alt || ''}
           />
         </div>
         <div

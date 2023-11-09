@@ -3,7 +3,7 @@ import { cn } from '@/app/lib/cn'
 import { BlogPostDocument } from '../../../prismicio-types'
 import Link from 'next/link'
 import { PrismicNextImage } from '@prismicio/next'
-import { isFilled } from '@prismicio/client'
+import { asText, isFilled } from '@prismicio/client'
 import Heading from './Heading'
 import { PrismicRichText } from './PrismicRichText'
 
@@ -32,6 +32,7 @@ export default function BlogCard({
               className="w-full transform rounded-lg object-cover object-center 
               shadow shadow-skin-muted transition duration-700 ease-in-out hover:-translate-y-4"
               fallbackAlt=""
+              title={`Read ${asText(blog_post.data.title)}`}
             />
           </Link>
         )}

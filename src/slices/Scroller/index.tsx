@@ -79,6 +79,8 @@ const Scroller = ({ slice, index }: ScrollerProps): JSX.Element => {
                   fallbackAlt=""
                   className="h-[300px] w-[400px]"
                   aria-hidden={i > slice.items.length - 1}
+                  priority={index < 2}
+                  title={item.image.alt || ''}
                 />
               </li>
             ))}

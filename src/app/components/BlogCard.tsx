@@ -20,31 +20,27 @@ export default function BlogCard({
   ...restProps
 }: BlogCardProps) {
   return (
-    <Comp
-      className={cn(
-        'my-8 block overflow-hidden rounded-lg border border-skin-secondary lg:my-12',
-        className,
-      )}
-      {...restProps}
-    >
-      <article className="grid grid-rows-2">
+    <Comp className={cn('my-8 block lg:my-12', className)} {...restProps}>
+      <article className="">
         {isFilled.image(blog_post.data.featured_image) && (
-          <div className="relative h-52 overflow-hidden">
-            <Link href={`${blog_post.url}`}>
-              <PrismicNextImage
-                field={blog_post.data.featured_image}
-                className="transition duration-700 ease-in-out hover:scale-110"
-                fallbackAlt=""
-              />
-            </Link>
-          </div>
+          <Link
+            href={`${blog_post.url}`}
+            className="overflow-hidden focus:outline-none focus:ring-4 focus:ring-blue-600"
+          >
+            <PrismicNextImage
+              field={blog_post.data.featured_image}
+              className="w-full transform rounded-lg object-cover object-center 
+              shadow shadow-skin-muted transition duration-700 ease-in-out hover:-translate-y-4"
+              fallbackAlt=""
+            />
+          </Link>
         )}
-        <div className="relative p-4">
+        <div className="relative mx-auto -mt-4 max-w-lg rounded-lg bg-skin-base p-4 shadow-md shadow-skin-secondary lg:-mt-16">
           <PrismicRichText
             field={blog_post.data.title}
             components={{
               heading1: ({ children }) => (
-                <Heading as="h1" size="3xl" className="text-left">
+                <Heading as="h1" size="3xl" className="my-2 text-left">
                   {children}
                 </Heading>
               ),

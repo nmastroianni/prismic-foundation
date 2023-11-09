@@ -12,7 +12,7 @@ export default async function Footer() {
     <Section
       as="footer"
       className={cn(
-        'bg-skin-neutral flex-col gap-y-8 text-skin-base lg:text-lg',
+        'flex-col gap-y-8 bg-skin-neutral py-8 text-skin-base lg:text-lg',
       )}
     >
       <div>

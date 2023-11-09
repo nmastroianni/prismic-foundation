@@ -39,15 +39,11 @@ const Scroller = ({ slice, index }: ScrollerProps): JSX.Element => {
       scrollers.forEach(scroller => {
         scroller.removeAttribute('data-animated')
 
-        // const scrollerInner = scroller.querySelector('.scroller__inner')
-        // if (scrollerInner) {
-        //   const duplicatedItems = scrollerInner.querySelectorAll(
-        //     '[aria-hidden="true"]',
-        //   )
-        //   duplicatedItems.forEach(item => {
-        //     scrollerInner.removeChild(item)
-        //   })
-        // }
+        const scrollerInner = scroller.querySelector('.scroller__inner')
+        if (scrollerInner) {
+          scrollerInner.classList.remove('flex')
+          scrollerInner.classList.add('hidden')
+        }
       })
     }
   }, [])

@@ -159,6 +159,8 @@ export type FooterMultiColumnDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | FaqSlice
+  | ProcessSlice
   | TestimonialSlice
   | ImageWithTextSlice
   | FeaturesSlice
@@ -567,6 +569,73 @@ export type AllDocumentTypes =
   | LayoutDocument
   | PageDocument
   | SettingsDocument;
+
+/**
+ * Primary content in *Faq → Primary*
+ */
+export interface FaqSliceDefaultPrimary {
+  /**
+   * Heading field in *Faq → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Primary content in *Faq → Items*
+ */
+export interface FaqSliceDefaultItem {
+  /**
+   * Question field in *Faq → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.items[].question
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  question: prismic.RichTextField;
+
+  /**
+   * Answer field in *Faq → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.items[].answer
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  answer: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Faq Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FaqSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FaqSliceDefaultPrimary>,
+  Simplify<FaqSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Faq*
+ */
+type FaqSliceVariation = FaqSliceDefault;
+
+/**
+ * Faq Shared Slice
+ *
+ * - **API ID**: `faq`
+ * - **Description**: Faq
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FaqSlice = prismic.SharedSlice<"faq", FaqSliceVariation>;
 
 /**
  * Primary content in *Features → Primary*
@@ -1271,6 +1340,126 @@ export type ImageWithTextSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Process → Primary*
+ */
+export interface ProcessSliceDefaultPrimary {
+  /**
+   * Title field in *Process → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Optionally add a section title
+   * - **API ID Path**: process.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Heading field in *Process → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Enter process heading
+   * - **API ID Path**: process.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Description field in *Process → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optionally describe the process
+   * - **API ID Path**: process.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Process → Items*
+ */
+export interface ProcessSliceDefaultItem {
+  /**
+   * Icon field in *Process → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Optionally select an icon
+   * - **API ID Path**: process.items[].icon
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  icon: prismic.SelectField<"message" | "call" | "people">;
+
+  /**
+   * Step Title field in *Process → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: process.items[].step_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  step_title: prismic.KeyTextField;
+
+  /**
+   * description field in *Process → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Describe this step
+   * - **API ID Path**: process.items[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Button Label field in *Process → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Optionally add a button
+   * - **API ID Path**: process.items[].button_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_label: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Process → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Add a link
+   * - **API ID Path**: process.items[].button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Default variation for Process Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProcessSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProcessSliceDefaultPrimary>,
+  Simplify<ProcessSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Process*
+ */
+type ProcessSliceVariation = ProcessSliceDefault;
+
+/**
+ * Process Shared Slice
+ *
+ * - **API ID**: `process`
+ * - **Description**: Process
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProcessSlice = prismic.SharedSlice<
+  "process",
+  ProcessSliceVariation
+>;
+
+/**
  * Primary content in *RichText → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -1430,6 +1619,11 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
+      FaqSlice,
+      FaqSliceDefaultPrimary,
+      FaqSliceDefaultItem,
+      FaqSliceVariation,
+      FaqSliceDefault,
       FeaturesSlice,
       FeaturesSliceDefaultPrimary,
       FeaturesSliceDefaultItem,
@@ -1466,6 +1660,11 @@ declare module "@prismicio/client" {
       ImageWithTextSliceVariation,
       ImageWithTextSliceDefault,
       ImageWithTextSliceRightImage,
+      ProcessSlice,
+      ProcessSliceDefaultPrimary,
+      ProcessSliceDefaultItem,
+      ProcessSliceVariation,
+      ProcessSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceSecondaryPrimary,

@@ -59,7 +59,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
           />
         </div>
       )}
-      <div className="mt-8 flex flex-wrap justify-evenly gap-4 lg:mt-0 lg:gap-4">
+      <div className="mt-8 flex flex-wrap justify-evenly gap-2 lg:mt-0 lg:gap-4">
         {slice.items.length > 0 &&
           slice.items.map((item, index) => {
             if (isFilled.richText(item.feature_heading)) {

@@ -20,6 +20,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "faq": {
+              "type": "SharedSlice"
+            },
+            "process": {
+              "type": "SharedSlice"
+            },
             "testimonial": {
               "type": "SharedSlice"
             },

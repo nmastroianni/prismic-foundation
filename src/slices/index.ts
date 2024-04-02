@@ -8,5 +8,7 @@ export const components = {
   footer_link_block: dynamic(() => import("./FooterLinkBlock")),
   footer_multi_column: dynamic(() => import("./FooterMultiColumn")),
   hero: dynamic(() => import("./Hero")),
+  image_with_text: dynamic(() => import("./ImageWithText")),
   rich_text: dynamic(() => import("./RichText")),
+  testimonial: dynamic(() => import("./Testimonial")),
 };

@@ -9,14 +9,14 @@ import {
 } from '@prismicio/react'
 import Image from 'next/image'
 
-type RichTextSpanProps = {
-  start: number
-  end: number
-  type: string
-  data: {
-    label: string
-  }
-}
+// type RichTextSpanProps = {
+//   start: number
+//   end: number
+//   type: string
+//   data: {
+//     label: string
+//   }
+// }
 
 const defaultComponents: JSXMapSerializer = {
   heading1: ({ children }) => {
@@ -62,16 +62,14 @@ const defaultComponents: JSXMapSerializer = {
     )
   },
   paragraph: ({ children, node }) => {
-    const labels = node.spans.filter(
-      (span) => span.type === 'label'
-    ) as unknown as RichTextSpanProps[]
+    // const labels = node.spans.filter(
+    //   (span) => span.type === 'label'
+    // ) as unknown as RichTextSpanProps[]
     return (
       <p
         className={cn(
           'prose mx-auto my-3 text-foreground lg:prose-lg xl:prose-xl lg:my-6',
-          {
-            grid: labels.length > 0 && labels[0].data.label === 'button',
-          }
+          {}
         )}
       >
         {children}

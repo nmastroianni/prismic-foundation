@@ -34,37 +34,6 @@
           "constraint": {},
           "thumbnails": []
         }
-      },
-      "site_theme": {
-        "type": "Select",
-        "config": {
-          "label": "Site Theme",
-          "placeholder": "",
-          "options": ["Base", "Alternate"]
-        }
-      },
-      "navigation": {
-        "type": "Group",
-        "config": {
-          "label": "Navigation",
-          "fields": {
-            "link": {
-              "type": "Link",
-              "config": {
-                "label": "Link",
-                "placeholder": "",
-                "select": null
-              }
-            },
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Label",
-                "placeholder": ""
-              }
-            }
-          }
-        }
       }
     }
   }

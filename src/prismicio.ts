@@ -5,7 +5,8 @@ import config from '../slicemachine.config.json'
 /**
  * The project's Prismic repository name.
  */
-export const repositoryName = config.repositoryName
+export const repositoryName =
+  process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || config.repositoryName
 
 /**
  * A list of Route Resolver objects that define how a document's `url` field is resolved.
@@ -14,18 +15,15 @@ export const repositoryName = config.repositoryName
  */
 // TODO: Update the routes array to match your project's route structure.
 const routes: prismic.ClientConfig['routes'] = [
+  // Examples:
   {
     type: 'homepage',
     path: '/',
   },
-  {
-    type: 'page',
-    path: '/:uid',
-  },
-  {
-    type: 'blog_post',
-    path: '/blog/:uid',
-  },
+  // {
+  // 	type: "page",
+  // 	path: "/:uid",
+  // },
 ]
 
 /**

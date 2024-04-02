@@ -1,77 +1,80 @@
 import type { Config } from 'tailwindcss'
 
-function withOpacity(variableName: string): any {
-  return ({ opacityValue }: { opacityValue: string | undefined }): string => {
-    if (opacityValue !== undefined) {
-      return `rgba(var(${variableName}), ${opacityValue})`
-    }
-    return `rgb(var(${variableName}))`
-  }
-}
-const config: Config = {
+const config = {
+  darkMode: ['class'],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/slices/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
+  prefix: '',
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
-      fontFamily: {
-        outfit: ['var(--font-outfit)'],
-        redhat: ['var(--font-red-hat-text)'],
-      },
-      textColor: {
-        skin: {
-          base: withOpacity('--color-base'),
-          primary: withOpacity('--color-primary'),
-          muted: withOpacity('--color-muted'),
-          secondary: withOpacity('--color-secondary'),
-          neutral: withOpacity('--color-neutral'),
-          inverted: withOpacity('--color-base'),
+      colors: {
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
         },
       },
-      backgroundColor: {
-        skin: {
-          base: withOpacity('--color-base'),
-          fill: withOpacity('--color-primary'),
-          neutral: withOpacity('--color-neutral'),
-          secondary: withOpacity('--color-secondary'),
-          muted: withOpacity('--color-muted'),
-          'button-base': withOpacity('--color-base'),
-          'button-base-hover': withOpacity('--color-muted'),
-          'button-primary': withOpacity('--color-primary'),
-          'button-primary-hover': withOpacity('--color-primary-hover'),
-          'button-secondary': withOpacity('--color-secondary'),
-          'button-secondary-hover': withOpacity('--color-secondary-hover'),
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
-      boxShadowColor: {
-        skin: {
-          base: withOpacity('--color-base'),
-          primary: withOpacity('--color-primary'),
-          secondary: withOpacity('--color-secondary'),
-          neutral: withOpacity('--color-neutral'),
-          muted: withOpacity('--color-muted'),
-        },
-      },
-      borderColor: {
-        skin: {
-          base: withOpacity('--color-base'),
-          secondary: withOpacity('--color-secondary'),
-          neutral: withOpacity('--color-neutral'),
-        },
-      },
-      gradientColorStops: {
-        skin: {
-          'hue-primary': withOpacity('--color-primary'),
-        },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/typography'),
-  ],
-}
+  plugins: [require('tailwindcss-animate')],
+} satisfies Config
+
 export default config

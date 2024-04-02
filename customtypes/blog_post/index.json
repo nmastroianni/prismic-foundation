@@ -36,31 +36,11 @@
           "placeholder": ""
         }
       },
-      "date_published": {
-        "type": "Date",
-        "config": {
-          "label": "Date Published",
-          "placeholder": ""
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "scroller": {
-              "type": "SharedSlice"
-            },
-            "content": {
-              "type": "SharedSlice"
-            },
-            "image_with_text": {
-              "type": "SharedSlice"
-            },
-            "hero": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     },

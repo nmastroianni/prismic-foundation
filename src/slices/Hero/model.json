@@ -16,48 +16,18 @@
           "type": "StructuredText",
           "config": {
             "label": "Heading",
-            "placeholder": "",
+            "placeholder": "Benefit driven headline",
             "allowTargetBlank": true,
-            "single": "heading1"
+            "single": "heading2"
           }
         },
         "description": {
           "type": "StructuredText",
           "config": {
             "label": "Description",
-            "placeholder": "",
+            "placeholder": "Short: What, Who, How",
             "allowTargetBlank": true,
             "single": "paragraph,strong,em"
-          }
-        },
-        "background_image": {
-          "type": "Image",
-          "config": {
-            "label": "Background Image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        },
-        "theme": {
-          "type": "Select",
-          "config": {
-            "label": "Theme",
-            "placeholder": "",
-            "options": [
-              "Base",
-              "Alternate"
-            ],
-            "default_value": "Base"
-          }
-        }
-      },
-      "items": {
-        "button_link": {
-          "type": "Link",
-          "config": {
-            "label": "Button Link",
-            "placeholder": "",
-            "select": null
           }
         },
         "button_label": {
@@ -67,21 +37,100 @@
             "placeholder": ""
           }
         },
-        "button_color": {
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "button_style": {
           "type": "Select",
           "config": {
-            "label": "Button Color",
-            "placeholder": "",
+            "label": "Button Style",
+            "placeholder": "Style of button",
             "options": [
-              "Inverted",
-              "Primary",
-              "Secondary",
-              "Ghost"
+              "default",
+              "secondary",
+              "outline",
+              "ghost",
+              "destructive",
+              "link"
             ],
-            "default_value": "Inverted"
+            "default_value": "default"
           }
         }
-      }
+      },
+      "items": {}
+    },
+    {
+      "id": "withImage",
+      "name": "With Image",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Benefit driven headline",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Short: What, Who, How",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em"
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Button Label",
+            "placeholder": ""
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "button_style": {
+          "type": "Select",
+          "config": {
+            "label": "Button Style",
+            "placeholder": "Style of button",
+            "options": [
+              "default",
+              "secondary",
+              "outline",
+              "ghost",
+              "destructive",
+              "link"
+            ],
+            "default_value": "default"
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

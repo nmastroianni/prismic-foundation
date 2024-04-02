@@ -4,76 +4,73 @@
 
 @layer base {
   :root {
-    --color-primary: 4, 96, 217;
-    --color-primary-hover: 5, 104, 235;
-    --color-secondary: 177, 204, 254;
-    --color-secondary-hover: 242, 242, 242;
-    --color-neutral: 30, 41, 59;
-    --color-base: 242, 242, 242;
-    --color-muted: 191, 219, 254;
-  }
-  .theme-alternate {
-    --color-primary: 158, 5, 34;
-    --color-primary-hover: 171, 5, 36;
-    --color-secondary: 184, 197, 145;
-    --color-secondary-hover: 160, 171, 126;
-    --color-neutral: 78, 8, 5;
-    --color-base: 255, 244, 212;
-    --color-muted: 243, 225, 232;
-  }
-  .full-bleed {
-    box-shadow: 0 0 0 100vmax var(--color-fill);
-    clip-path: inset(0 -100vmax);
-  }
-  .scroller[data-animated='true'] {
-    overflow: hidden;
-    -webkit-mask: linear-gradient(
-      90deg,
-      transparent,
-      purple 15%,
-      purple 85%,
-      transparent
-    );
-    mask: linear-gradient(
-      90deg,
-      transparent,
-      purple 15%,
-      purple 85%,
-      transparent
-    );
-  }
-  .scroller[data-animated='true'] .scroller__inner {
-    width: max-content;
-    flex-wrap: nowrap;
-    animation: scroll var(--_animation-duration, 40s)
-      var(--_animation-direction, forwards) linear infinite;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.5rem;
   }
 
-  .scroller[data-direction='right'] {
-    --_animation-direction: reverse;
-  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
 
-  .scroller[data-direction='left'] {
-    --_animation-direction: forwards;
-  }
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-  .scroller[data-speed='fast'] {
-    --_animation-duration: 30s;
-  }
-  .scroller[data-animated='true'] .scroller__inner:hover {
-    animation-play-state: paused;
-  }
-  .scroller[data-speed='medium'] {
-    --_animation-duration: 50s;
-  }
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-  .scroller[data-speed='slow'] {
-    --_animation-duration: 100s;
-  }
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
 
-  @keyframes scroll {
-    to {
-      transform: translate(calc(-50% - 0.5rem));
-    }
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

@@ -63,7 +63,7 @@ const Process = ({ slice }: ProcessProps): JSX.Element => {
           </div>
         )}
         {slice.items.length > 0 && (
-          <div className="mt-8 flex flex-wrap justify-evenly gap-2 lg:mt-0 lg:gap-4">
+          <div className="mt-8 flex flex-wrap justify-evenly gap-12 lg:mt-0 lg:gap-4">
             {slice.items.map((item, index) => {
               if (isFilled.richText(item.description)) {
                 let Icon: React.ElementType | null = null

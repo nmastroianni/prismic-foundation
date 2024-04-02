@@ -38,7 +38,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
       )}
       <div
         className={cn(
-          'mx-auto my-8 flex max-w-screen-xl flex-col items-center justify-center rounded-lg py-6 lg:p-12 backdrop-blur',
+          'mx-auto my-8 flex max-w-screen-xl flex-col items-center justify-center rounded-lg p-6 lg:p-12 backdrop-blur',
           {
             'bg-primary/80': slice.variation !== 'default',
           }

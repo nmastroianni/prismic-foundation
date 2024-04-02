@@ -42,7 +42,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
               delay: 4000,
             }),
           ]}
-          className="w-full max-w-[280px] md:max-w-screen-sm lg:max-w-screen-md"
+          className="w-full max-w-[240px] md:max-w-screen-sm lg:max-w-screen-md"
         >
           <CarouselContent>
             {slice.items.length > 0 && (

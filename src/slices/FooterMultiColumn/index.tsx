@@ -30,6 +30,7 @@ const FooterMultiColumn = ({ slice }: FooterMultiColumnProps): JSX.Element => {
     <Section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="py-6 lg:py-12"
     >
       {isFilled.richText(slice.primary.heading) && (
         <PrismicRichText

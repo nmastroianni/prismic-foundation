@@ -159,6 +159,7 @@ export type FooterMultiColumnDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | CarouselSlice
   | FaqSlice
   | ProcessSlice
   | TestimonialSlice
@@ -425,7 +426,15 @@ export type LayoutDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = never;
+type PageDocumentDataSlicesSlice =
+  | FeaturesSlice
+  | FaqSlice
+  | CarouselSlice
+  | TestimonialSlice
+  | ProcessSlice
+  | ImageWithTextSlice
+  | RichTextSlice
+  | HeroSlice;
 
 /**
  * Content for Page documents
@@ -569,6 +578,66 @@ export type AllDocumentTypes =
   | LayoutDocument
   | PageDocument
   | SettingsDocument;
+
+/**
+ * Primary content in *Carousel → Primary*
+ */
+export interface CarouselSliceDefaultPrimary {
+  /**
+   * Title field in *Carousel → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: carousel.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Carousel → Items*
+ */
+export interface CarouselSliceDefaultItem {
+  /**
+   * Image field in *Carousel → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: carousel.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Carousel Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CarouselSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CarouselSliceDefaultPrimary>,
+  Simplify<CarouselSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Carousel*
+ */
+type CarouselSliceVariation = CarouselSliceDefault;
+
+/**
+ * Carousel Shared Slice
+ *
+ * - **API ID**: `carousel`
+ * - **Description**: Carousel
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CarouselSlice = prismic.SharedSlice<
+  "carousel",
+  CarouselSliceVariation
+>;
 
 /**
  * Primary content in *Faq → Primary*
@@ -1231,9 +1300,94 @@ export type HeroSliceWithImage = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Hero → Primary*
+ */
+export interface HeroSliceContentHeightPrimary {
+  /**
+   * Image field in *Hero → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Heading field in *Hero → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Benefit driven headline
+   * - **API ID Path**: hero.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Description field in *Hero → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Short: What, Who, How
+   * - **API ID Path**: hero.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Button Label field in *Hero → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.button_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_label: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Hero → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Button Style field in *Hero → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Style of button
+   * - **Default Value**: default
+   * - **API ID Path**: hero.primary.button_style
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  button_style: prismic.SelectField<
+    "default" | "secondary" | "outline" | "ghost" | "destructive" | "link",
+    "filled"
+  >;
+}
+
+/**
+ * Content Height variation for Hero Slice
+ *
+ * - **API ID**: `contentHeight`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceContentHeight = prismic.SharedSliceVariation<
+  "contentHeight",
+  Simplify<HeroSliceContentHeightPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation = HeroSliceDefault | HeroSliceWithImage;
+type HeroSliceVariation =
+  | HeroSliceDefault
+  | HeroSliceWithImage
+  | HeroSliceContentHeight;
 
 /**
  * Hero Shared Slice
@@ -1619,6 +1773,11 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
+      CarouselSlice,
+      CarouselSliceDefaultPrimary,
+      CarouselSliceDefaultItem,
+      CarouselSliceVariation,
+      CarouselSliceDefault,
       FaqSlice,
       FaqSliceDefaultPrimary,
       FaqSliceDefaultItem,
@@ -1651,9 +1810,11 @@ declare module "@prismicio/client" {
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceWithImagePrimary,
+      HeroSliceContentHeightPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceWithImage,
+      HeroSliceContentHeight,
       ImageWithTextSlice,
       ImageWithTextSliceDefaultPrimary,
       ImageWithTextSliceRightImagePrimary,

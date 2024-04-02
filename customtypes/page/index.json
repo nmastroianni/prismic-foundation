@@ -25,7 +25,32 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "features": {
+              "type": "SharedSlice"
+            },
+            "faq": {
+              "type": "SharedSlice"
+            },
+            "carousel": {
+              "type": "SharedSlice"
+            },
+            "testimonial": {
+              "type": "SharedSlice"
+            },
+            "process": {
+              "type": "SharedSlice"
+            },
+            "image_with_text": {
+              "type": "SharedSlice"
+            },
+            "rich_text": {
+              "type": "SharedSlice"
+            },
+            "hero": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

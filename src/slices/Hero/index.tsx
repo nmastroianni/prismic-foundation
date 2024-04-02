@@ -20,27 +20,27 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
     <Section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={cn(
-        'lg:h-[calc(100vh-64px)] lg:min-h-[750px] text-primary-foreground relative',
-        { 'bg-primary': slice.variation === 'default' }
-      )}
+      className={cn('text-primary-foreground relative', {
+        'bg-primary': slice.variation === 'default',
+        'lg:h-[calc(100vh-64px)] lg:min-h-[750px]':
+          slice.variation !== 'contentHeight',
+      })}
     >
-      {slice.variation === 'withImage' &&
-        isFilled.image(slice.primary.image) && (
-          <PrismicNextImage
-            field={slice.primary.image}
-            fallbackAlt=""
-            fill
-            sizes="100vw"
-            className="z-[-2] hidden object-cover lg:block"
-            priority={index === 0}
-          />
-        )}
+      {slice.variation !== 'default' && isFilled.image(slice.primary.image) && (
+        <PrismicNextImage
+          field={slice.primary.image}
+          fallbackAlt=""
+          fill
+          sizes="100vw"
+          className="z-[-2] object-cover"
+          priority={index === 0}
+        />
+      )}
       <div
         className={cn(
-          'mx-auto my-8 flex max-w-screen-lg flex-col items-center justify-center rounded-lg p-3 lg:p-8 backdrop-blur',
+          'mx-auto my-8 flex max-w-screen-xl flex-col items-center justify-center rounded-lg py-6 lg:p-12 backdrop-blur',
           {
-            'bg-primary/60': slice.variation === 'withImage',
+            'bg-primary/80': slice.variation !== 'default',
           }
         )}
       >
@@ -61,7 +61,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
             field={slice.primary.description}
             components={{
               paragraph: ({ children }) => (
-                <p className="text-primary-foreground max-w-prose my-3">
+                <p className="text-primary-foreground max-w-prose my-3 text-sm md:text-lg lg:text-xl">
                   {children}
                 </p>
               ),

@@ -162,7 +162,7 @@ const ContactForm = (data: FormSlice): JSX.Element => {
                   })}
                   type="text"
                   placeholder={name_placeholder || 'Enter your name here'}
-                  className="w-full max-w-sm rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary lg:max-w-lg lg:text-lg"
+                  className="w-full rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
                   onFocus={handleFocus}
                 />
               </label>
@@ -185,7 +185,7 @@ const ContactForm = (data: FormSlice): JSX.Element => {
                   })}
                   type="email"
                   placeholder={email_placeholder || 'Enter your email here'}
-                  className={`w-full max-w-sm rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary lg:max-w-lg lg:text-lg`}
+                  className={`w-full rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary`}
                   onFocus={handleFocus}
                 />
               </label>
@@ -210,7 +210,7 @@ const ContactForm = (data: FormSlice): JSX.Element => {
                   placeholder={
                     phone_placeholder || 'Enter your phone number here'
                   }
-                  className={`w-full max-w-sm rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary lg:max-w-lg lg:text-lg`}
+                  className={`w-full rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary`}
                   onFocus={handleFocus}
                 />
               </label>
@@ -234,7 +234,7 @@ const ContactForm = (data: FormSlice): JSX.Element => {
                   placeholder={
                     message_placeholder || `Craft your message to us here...`
                   }
-                  className={`w-full max-w-sm rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary lg:max-w-lg lg:text-lg`}
+                  className={`w-full rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary`}
                   onFocus={handleFocus}
                   {...register('message', {
                     required:
@@ -245,7 +245,7 @@ const ContactForm = (data: FormSlice): JSX.Element => {
             </div>
           </div>
 
-          <div>
+          <div className="flex flex-col items-center lg:items-start">
             <SubmitButton text={button_text} variant={button_style} />
             <p className="prose-a:text-primary-content prose prose-sm mt-3 prose-a:no-underline hover:prose-a:underline">
               This site is protected by reCAPTCHA and the{' '}

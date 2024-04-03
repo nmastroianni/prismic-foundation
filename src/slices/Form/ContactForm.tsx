@@ -21,7 +21,6 @@ type FormValues = {
 }
 
 const ContactForm = (data: FormSlice): JSX.Element => {
-  console.log('ContactForm.tsx says -> ', data)
   const {
     primary: {
       name_label,

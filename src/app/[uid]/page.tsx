@@ -6,6 +6,7 @@ import { createClient } from '@/prismicio'
 import { components } from '@/slices'
 import { asText } from '@prismicio/client'
 import Heading from '@/components/typography/Heading'
+import { Graph } from 'schema-dts'
 
 type Params = { uid: string }
 type SearchParams = {
@@ -25,10 +26,40 @@ export default async function Page({
       fetchLinks: ['gallery_item.image'],
     })
     .catch(() => notFound())
+  const settings = await client.getSingle('settings')
   const pageNumber = { page: searchParams.page }
+
+  const jsonLd: Graph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `https://${settings.data.domain || `example.com`}/#${page.uid}`,
+        about: page.data.meta_description || undefined,
+        author: {
+          '@type': 'Organization',
+          name: settings.data.site_title || 'Fill In Site Title in CMS',
+        },
+        copyrightHolder: {
+          '@type': 'Organization',
+          name: settings.data.site_title || 'Fill In Site Title in CMS',
+        },
+        datePublished: page.first_publication_date,
+        dateModified: page.last_publication_date,
+        image:
+          page.data.meta_image.url ||
+          settings.data.site_meta_image.url ||
+          undefined,
+      },
+    ],
+  }
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Heading
         as="h1"
         size="6xl"

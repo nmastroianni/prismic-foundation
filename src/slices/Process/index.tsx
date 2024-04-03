@@ -57,7 +57,9 @@ const Process = ({ slice }: ProcessProps): JSX.Element => {
             <PrismicRichText
               field={slice.primary.description}
               components={{
-                paragraph: ({ children }) => <p className="mb-8">{children}</p>,
+                paragraph: ({ children }) => (
+                  <p className="mb-8 prose lg:prose-lg">{children}</p>
+                ),
               }}
             />
           </div>
@@ -92,7 +94,7 @@ const Process = ({ slice }: ProcessProps): JSX.Element => {
                           field={item.description}
                           components={{
                             paragraph: ({ children }) => (
-                              <p className="mb-8">{children}</p>
+                              <p className="mb-8 prose">{children}</p>
                             ),
                           }}
                         />

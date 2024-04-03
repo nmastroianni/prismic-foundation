@@ -10,6 +10,7 @@ export const components = {
   footer_heading: dynamic(() => import("./FooterHeading")),
   footer_link_block: dynamic(() => import("./FooterLinkBlock")),
   footer_multi_column: dynamic(() => import("./FooterMultiColumn")),
+  form: dynamic(() => import("./Form")),
   hero: dynamic(() => import("./Hero")),
   image_with_text: dynamic(() => import("./ImageWithText")),
   process: dynamic(() => import("./Process")),

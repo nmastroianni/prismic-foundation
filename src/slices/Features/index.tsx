@@ -54,7 +54,9 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
           <PrismicRichText
             field={slice.primary.description}
             components={{
-              paragraph: ({ children }) => <p className="mb-8">{children}</p>,
+              paragraph: ({ children }) => (
+                <p className="mb-8 prose lg:prose-lg">{children}</p>
+              ),
             }}
           />
         </div>
@@ -97,7 +99,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
                         field={item.feature_description}
                         components={{
                           paragraph: ({ children }) => (
-                            <p className="mb-8">{children}</p>
+                            <p className="mb-8 prose">{children}</p>
                           ),
                         }}
                       />

@@ -6,6 +6,7 @@ import { createClient } from '@/prismicio'
 import { components } from '@/slices'
 import { asText } from '@prismicio/client'
 import Heading from '@/components/typography/Heading'
+import { Graph } from 'schema-dts'
 
 type Params = { uid: string }
 type SearchParams = {
@@ -23,10 +24,46 @@ export default async function Page({
   const page = await client
     .getByUID('post', params.uid, {})
     .catch(() => notFound())
+  const settings = await client.getSingle('settings')
   const pageNumber = { page: searchParams.page }
+
+  const jsonLd: Graph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `https://${settings.data.domain || `example.com`}/#site`,
+        name: settings.data.site_title || '',
+        url: `https://${settings.data.domain || `example.com`}/`,
+      },
+      {
+        '@type': 'BlogPosting',
+        '@id': `https://${settings.data.domain || `example.com`}${
+          page.url
+        }/#post`,
+        headline: asText(page.data.title),
+        description:
+          asText(page.data.excerpt) || page.data.meta_description || undefined,
+        mainEntityOfPage: `https://${settings.data.domain || `example.com`}${
+          page.url
+        }`,
+        datePublished: page.first_publication_date || undefined,
+        dateModified: page.last_publication_date || undefined,
+        author: {
+          '@type': 'Organization',
+          name: settings.data.site_title || 'Fill In Site Title in CMS',
+        },
+        image: page.data.meta_image.url || undefined,
+      },
+    ],
+  }
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Heading
         as="h1"
         size="6xl"

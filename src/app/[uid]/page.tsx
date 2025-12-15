@@ -13,13 +13,12 @@ type SearchParams = {
   [key: string]: string | string[] | undefined
 }
 
-export default async function Page({
-  params,
-  searchParams,
-}: {
-  params: Params
-  searchParams: SearchParams
+export default async function Page(props: {
+  params: Promise<Params>
+  searchParams: Promise<SearchParams>
 }) {
+  const searchParams = await props.searchParams
+  const params = await props.params
   const client = createClient()
   const page = await client
     .getByUID('page', params.uid, {
@@ -63,7 +62,7 @@ export default async function Page({
       <Heading
         as="h1"
         size="6xl"
-        className="mx-auto my-8 max-w-screen-lg px-2 md:px-6 lg:my-12 lg:text-center"
+        className="mx-auto my-8 max-w-(--breakpoint-lg) px-2 md:px-6 lg:my-12 lg:text-center"
       >
         {asText(page.data.title)}
       </Heading>
@@ -76,11 +75,10 @@ export default async function Page({
   )
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Params
+export async function generateMetadata(props: {
+  params: Promise<Params>
 }): Promise<Metadata> {
+  const params = await props.params
   const client = createClient()
   const page = await client.getByUID('page', params.uid).catch(() => notFound())
   const settings = await client.getSingle('settings')

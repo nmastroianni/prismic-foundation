@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { Content, asText, isFilled } from '@prismicio/client'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
+import React from 'react'
 
 /**
  * Props for `Features`.
@@ -16,7 +17,7 @@ export type FeaturesProps = SliceComponentProps<Content.FeaturesSlice>
 /**
  * Component for "Features" Slices.
  */
-const Features = ({ slice }: FeaturesProps): JSX.Element => {
+const Features = ({ slice }: FeaturesProps): React.JSX.Element => {
   return (
     <Section
       data-slice-type={slice.slice_type}
@@ -47,7 +48,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
       )}
       {isFilled.richText(slice.primary.description) && (
         <div
-          className={cn('max-w-prose mx-auto', {
+          className={cn('mx-auto max-w-prose', {
             'text-primary-foreground': slice.variation === 'primary',
           })}
         >
@@ -55,7 +56,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
             field={slice.primary.description}
             components={{
               paragraph: ({ children }) => (
-                <p className="mb-8 prose lg:prose-lg">{children}</p>
+                <p className="prose mb-8 lg:prose-lg">{children}</p>
               ),
             }}
           />
@@ -68,7 +69,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
               return (
                 <Card
                   key={slice.id + index}
-                  className={cn('w-[350px]', {
+                  className={cn('w-87.5', {
                     'bg-secondary': slice.variation === 'default',
                     'bg-primary text-primary-foreground':
                       slice.variation === 'primary',
@@ -99,7 +100,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
                         field={item.feature_description}
                         components={{
                           paragraph: ({ children }) => (
-                            <p className="mb-8 prose">{children}</p>
+                            <p className="prose mb-8">{children}</p>
                           ),
                         }}
                       />

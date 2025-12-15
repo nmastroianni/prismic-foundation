@@ -36,7 +36,7 @@ const Navbar = ({
       <Section
         width="xl"
         padded={false}
-        className="py-1 md:py-2 lg:py-3 px-2 md:px-3"
+        className="px-2 py-1 md:px-3 md:py-2 lg:py-3"
       >
         <div className="flex items-center justify-between">
           <Link href="/">
@@ -66,7 +66,7 @@ const Navbar = ({
                 field={cta_link}
                 className={cn(
                   buttonVariants({ variant: 'default' }),
-                  'hidden md:inline-flex'
+                  'hidden md:inline-flex',
                 )}
               >
                 {cta_label}

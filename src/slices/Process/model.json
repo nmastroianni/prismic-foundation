@@ -44,11 +44,7 @@
           "config": {
             "label": "Icon",
             "placeholder": "Optionally select an icon",
-            "options": [
-              "message",
-              "call",
-              "people"
-            ]
+            "options": ["message", "call", "people"]
           }
         },
         "step_title": {

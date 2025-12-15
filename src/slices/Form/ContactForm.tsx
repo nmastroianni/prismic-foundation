@@ -20,7 +20,7 @@ type FormValues = {
   token?: string
 }
 
-const ContactForm = (data: FormSlice): JSX.Element => {
+const ContactForm = (data: FormSlice): React.JSX.Element => {
   const {
     primary: {
       name_label,
@@ -97,7 +97,7 @@ const ContactForm = (data: FormSlice): JSX.Element => {
   function SubmitButton({
     text = 'Submit',
     variant = 'default',
-  }: SubmitButtonProps): JSX.Element {
+  }: SubmitButtonProps): React.JSX.Element {
     return (
       <Button
         disabled={isSubmitting}
@@ -113,13 +113,13 @@ const ContactForm = (data: FormSlice): JSX.Element => {
   return (
     <>
       {success === true && (
-        <p className="text-xl text-color-primary">
+        <p className="text-color-primary text-xl">
           Thank you for getting in touch. We will contact you soon!
         </p>
       )}
       {success !== true && (
         <form
-          className="my-12 flex flex-col gap-y-4 max-w-screen-sm mx-auto"
+          className="mx-auto my-12 flex max-w-screen-sm flex-col gap-y-4"
           action={async (formData: FormData) => {
             trigger()
             if (!isValid) return
@@ -147,7 +147,7 @@ const ContactForm = (data: FormSlice): JSX.Element => {
           >
             <div className="relative">
               {errors?.name && (
-                <p className="text-destructive absolute -top-10">
+                <p className="absolute -top-10 text-destructive">
                   &darr; {errors?.name?.message}
                 </p>
               )}
@@ -162,14 +162,14 @@ const ContactForm = (data: FormSlice): JSX.Element => {
                   })}
                   type="text"
                   placeholder={name_placeholder || 'Enter your name here'}
-                  className="w-full rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
                   onFocus={handleFocus}
                 />
               </label>
             </div>
             <div className="relative">
               {errors?.email && (
-                <p className="text-destructive absolute -top-10">
+                <p className="absolute -top-10 text-destructive">
                   {' '}
                   &darr; {errors?.email?.message}
                 </p>
@@ -185,14 +185,14 @@ const ContactForm = (data: FormSlice): JSX.Element => {
                   })}
                   type="email"
                   placeholder={email_placeholder || 'Enter your email here'}
-                  className={`w-full rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary`}
+                  className={`w-full rounded focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none`}
                   onFocus={handleFocus}
                 />
               </label>
             </div>
             <div className="relative">
               {errors?.phone && (
-                <p className="text-destructive absolute -top-10">
+                <p className="absolute -top-10 text-destructive">
                   {' '}
                   &darr; {errors?.phone?.message}
                 </p>
@@ -210,14 +210,14 @@ const ContactForm = (data: FormSlice): JSX.Element => {
                   placeholder={
                     phone_placeholder || 'Enter your phone number here'
                   }
-                  className={`w-full rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary`}
+                  className={`w-full rounded focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none`}
                   onFocus={handleFocus}
                 />
               </label>
             </div>
             <div className="relative">
               {errors?.message && (
-                <p className="text-destructive absolute -top-10">
+                <p className="absolute -top-10 text-destructive">
                   {' '}
                   &darr; {errors?.message?.message}
                 </p>
@@ -234,7 +234,7 @@ const ContactForm = (data: FormSlice): JSX.Element => {
                   placeholder={
                     message_placeholder || `Craft your message to us here...`
                   }
-                  className={`w-full rounded focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary`}
+                  className={`w-full rounded focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none`}
                   onFocus={handleFocus}
                   {...register('message', {
                     required:

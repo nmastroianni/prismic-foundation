@@ -10,6 +10,7 @@ import Section from '@/components/layout/Section'
 import { PrismicRichText } from '@/components/typography/PrismicRichText'
 import Heading from '@/components/typography/Heading'
 import { cn } from '@/lib/utils'
+import React from 'react'
 
 /**
  * Props for `Faq`.
@@ -19,7 +20,7 @@ export type FaqProps = SliceComponentProps<Content.FaqSlice>
 /**
  * Component for "Faq" Slices.
  */
-const Faq = ({ slice }: FaqProps): JSX.Element => {
+const Faq = ({ slice }: FaqProps): React.JSX.Element => {
   return (
     <Section
       data-slice-type={slice.slice_type}
@@ -46,7 +47,7 @@ const Faq = ({ slice }: FaqProps): JSX.Element => {
       {slice.items.length > 0 && (
         <Accordion
           type="multiple"
-          className="my-6 lg:my-12 bg-secondary rounded-lg px-4"
+          className="my-6 rounded-lg bg-secondary px-4 lg:my-12"
         >
           {slice.items.map((item, index) => (
             <AccordionItem
@@ -60,7 +61,7 @@ const Faq = ({ slice }: FaqProps): JSX.Element => {
                     field={item.question}
                     components={{
                       paragraph: ({ children }) => (
-                        <p className="prose lg:prose-lg xl:prose-xl font-semibold pr-4 text-left">
+                        <p className="prose pr-4 text-left font-semibold lg:prose-lg xl:prose-xl">
                           {children}
                         </p>
                       ),
@@ -76,7 +77,7 @@ const Faq = ({ slice }: FaqProps): JSX.Element => {
                     field={item.answer}
                     components={{
                       paragraph: ({ children }) => (
-                        <p className="prose lg:prose-lg my-1.5 lg:my-3">
+                        <p className="my-1.5 prose lg:my-3 lg:prose-lg">
                           {children}
                         </p>
                       ),

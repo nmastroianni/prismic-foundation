@@ -17,10 +17,7 @@
           "config": {
             "label": "Content Type",
             "placeholder": "Select the content type to display",
-            "options": [
-              "post",
-              "service"
-            ],
+            "options": ["post", "service"],
             "default_value": "post"
           }
         },

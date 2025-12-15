@@ -1,123 +1,126 @@
-import Heading from '@/components/typography/Heading'
-import { cn } from '@/lib/utils'
-import * as prismic from '@prismicio/client'
-import { PrismicNextLink } from '@prismicio/next'
 import {
   PrismicRichText as BasePrismicRichText,
   JSXMapSerializer,
-  PrismicRichTextProps,
+  PrismicRichTextProps as BasePrismicRichTextProps,
 } from '@prismicio/react'
+import * as prismic from '@prismicio/client'
+import Heading from '@/components/typography/Heading'
+import * as React from 'react'
 import Image from 'next/image'
-
-// type RichTextSpanProps = {
-//   start: number
-//   end: number
-//   type: string
-//   data: {
-//     label: string
-//   }
-// }
+import Link from 'next/link'
+import { ReactNode } from 'react'
 
 const defaultComponents: JSXMapSerializer = {
-  heading1: ({ children }) => {
+  heading1: ({ children }: { children: ReactNode }) => {
     return (
       <Heading as="h1" size="6xl">
         {children}
       </Heading>
     )
   },
-  heading2: ({ children }) => {
+  heading2: ({ children }: { children: ReactNode }) => {
     return (
       <Heading as="h2" size="5xl">
         {children}
       </Heading>
     )
   },
-  heading3: ({ children }) => {
+  heading3: ({ children }: { children: ReactNode }) => {
     return (
       <Heading as="h3" size="4xl">
         {children}
       </Heading>
     )
   },
-  heading4: ({ children }) => {
+  heading4: ({ children }: { children: ReactNode }) => {
     return (
       <Heading as="h4" size="3xl">
         {children}
       </Heading>
     )
   },
-  heading5: ({ children }) => {
+  heading5: ({ children }: { children: ReactNode }) => {
     return (
       <Heading as="h5" size="2xl">
         {children}
       </Heading>
     )
   },
-  heading6: ({ children }) => {
+  heading6: ({ children }: { children: ReactNode }) => {
     return (
       <Heading as="h6" size="xl">
         {children}
       </Heading>
     )
   },
-  paragraph: ({ children, node }) => {
-    // const labels = node.spans.filter(
-    //   (span) => span.type === 'label'
-    // ) as unknown as RichTextSpanProps[]
+  paragraph: ({ children }: { children: ReactNode }) => {
     return (
-      <p
-        className={cn(
-          'prose mx-auto my-3 text-foreground lg:prose-lg xl:prose-xl lg:my-6',
-          {}
-        )}
-      >
-        {children}
-      </p>
+      <p className="mx-auto my-4 self-start text-inherit lg:my-6">{children}</p>
     )
   },
   embed: ({ node }) => {
     return (
-      <div className="mx-auto max-w-screen-sm overflow-hidden rounded shadow-xl">
+      <div className="mx-auto max-w-(--breakpoint-sm) overflow-hidden rounded shadow-xl">
         <div
-          className="aspect-h-9 aspect-w-16"
+          className="aspect-video w-full [&>iframe]:h-full [&>iframe]:w-full [&>iframe]:border-0"
           dangerouslySetInnerHTML={{ __html: node.oembed.html || '' }}
         />
       </div>
     )
   },
   image: ({ node }) => {
-    return (
-      <div className="prose mx-auto flex justify-center">
-        <Image
-          src={node.url}
-          width={node.dimensions.width}
-          height={node.dimensions.height}
-          alt={node.alt || ''}
-          className="rounded-md"
-          title={node.alt || ''}
-        />
-      </div>
-    )
+    if (node.linkTo) {
+      return (
+        <div className="flex justify-center">
+          <Link href={node.linkTo.url || '#'} target="_blank">
+            <Image
+              src={node.url}
+              alt={node.alt || ''}
+              width={node.dimensions.width}
+              height={node.dimensions.height}
+              className="my-4 rounded-lg shadow-sm md:my-6 lg:my-8 xl:my-10"
+              title={node.alt || ''}
+            />
+          </Link>
+        </div>
+      )
+    } else {
+      return (
+        <div className="flex justify-center">
+          <Link href={node.url} target="_blank">
+            <Image
+              src={node.url}
+              alt={node.alt || ''}
+              width={node.dimensions.width}
+              height={node.dimensions.height}
+              className="my-4 rounded-lg shadow-sm md:my-6 lg:my-8 xl:my-10"
+              title={node.alt || ''}
+            />
+          </Link>
+        </div>
+      )
+    }
   },
-  list: ({ children }) => {
-    return (
-      <ul className="prose mx-auto list-disc lg:prose-lg xl:prose-xl">
-        {children}
-      </ul>
-    )
+  list: ({ children }: { children: ReactNode }) => {
+    return <ul className="mx-auto list-disc">{children}</ul>
   },
-  listItem: ({ children }) => {
+  listItem: ({ children }: { children: ReactNode }) => {
     return <li className="ml-4 md:ml-6 lg:ml-8 xl:ml-10">{children}</li>
-  },
-  hyperlink: ({ node, children }) => {
-    return <PrismicNextLink field={node.data}>{children}</PrismicNextLink>
   },
 }
 
+// Define PrismicRichTextProps as a generic type
+interface PrismicRichTextProps<
+  LinkResolverFunction extends prismic.LinkResolverFunction =
+    prismic.LinkResolverFunction,
+> extends BasePrismicRichTextProps {
+  components?: Record<string, React.ComponentType<any>>
+  // Add other props as needed
+}
+
 export const PrismicRichText = function PrismicRichText<
-  LinkResolverFunction extends
-    prismic.LinkResolverFunction<any> = prismic.LinkResolverFunction,
+  LinkResolverFunction extends prismic.LinkResolverFunction<any> =
+    prismic.LinkResolverFunction,
 >({ components, ...props }: PrismicRichTextProps<LinkResolverFunction>) {
   return (
     <BasePrismicRichText

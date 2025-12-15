@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextLink } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
+import React from 'react'
 import { AiOutlineMessage } from 'react-icons/ai'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { FaPeopleGroup } from 'react-icons/fa6'
@@ -19,7 +20,7 @@ export type ProcessProps = SliceComponentProps<Content.ProcessSlice>
 /**
  * Component for "Process" Slices.
  */
-const Process = ({ slice }: ProcessProps): JSX.Element => {
+const Process = ({ slice }: ProcessProps): React.JSX.Element => {
   const icons = {
     message: AiOutlineMessage,
     call: FaPhoneAlt,
@@ -53,12 +54,12 @@ const Process = ({ slice }: ProcessProps): JSX.Element => {
           />
         )}
         {isFilled.richText(slice.primary.description) && (
-          <div className={cn('max-w-prose mx-auto', {})}>
+          <div className={cn('mx-auto max-w-prose', {})}>
             <PrismicRichText
               field={slice.primary.description}
               components={{
                 paragraph: ({ children }) => (
-                  <p className="mb-8 prose lg:prose-lg">{children}</p>
+                  <p className="prose mb-8 lg:prose-lg">{children}</p>
                 ),
               }}
             />
@@ -76,16 +77,16 @@ const Process = ({ slice }: ProcessProps): JSX.Element => {
                   <Card key={slice.id + index} className={cn('max-w-sm', {})}>
                     <CardHeader>
                       {Icon ? (
-                        <Icon className="h-24 w-24 inline-flex self-center" />
+                        <Icon className="inline-flex h-24 w-24 self-center" />
                       ) : (
-                        <p className="text-[6rem] text-center font-black">
+                        <p className="text-center text-[6rem] font-black">
                           {index + 1}
                         </p>
                       )}
                     </CardHeader>
                     <CardContent>
                       {isFilled.keyText(item.step_title) && (
-                        <p className="text-sm font-bold uppercase text-center my-1.5 lg:my-3">
+                        <p className="my-1.5 text-center text-sm font-bold uppercase lg:my-3">
                           {item.step_title}
                         </p>
                       )}
@@ -94,7 +95,7 @@ const Process = ({ slice }: ProcessProps): JSX.Element => {
                           field={item.description}
                           components={{
                             paragraph: ({ children }) => (
-                              <p className="mb-8 prose">{children}</p>
+                              <p className="prose mb-8">{children}</p>
                             ),
                           }}
                         />

@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          'flex min-h-screen flex-col justify-between bg-background font-sans antialiased'
+          'flex min-h-screen flex-col justify-between bg-background font-sans antialiased',
         )}
       >
         <Header />

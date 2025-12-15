@@ -67,7 +67,7 @@ export default async function Page({
       <Heading
         as="h1"
         size="6xl"
-        className="mx-auto my-8 max-w-screen-lg px-2 md:px-6 lg:my-12 lg:text-center"
+        className="mx-auto my-8 max-w-(--breakpoint-lg) px-2 md:px-6 lg:my-12 lg:text-center"
       >
         {asText(page.data.title)}
       </Heading>
@@ -110,7 +110,7 @@ export async function generateStaticParams() {
   const client = createClient()
   const pages = await client.getAllByType('post')
 
-  return pages.map((page) => {
+  return pages.map(page => {
     return { uid: page.uid }
   })
 }

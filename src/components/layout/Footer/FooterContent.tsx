@@ -10,12 +10,16 @@ import { components } from '@/slices'
 import { PrismicNextLink } from '@prismicio/next'
 import { CopyrightIcon } from 'lucide-react'
 import Copyright from './Copyright'
+import React from 'react'
 
 type FooterContentProps = {
   data: LayoutDocumentData
   settings: SettingsDocumentData
 }
-const FooterContent = ({ data, settings }: FooterContentProps): JSX.Element => {
+const FooterContent = ({
+  data,
+  settings,
+}: FooterContentProps): React.JSX.Element => {
   return (
     <Section as="footer" className="bg-primary text-primary-foreground">
       <SliceZone components={components} slices={data.slices1} />

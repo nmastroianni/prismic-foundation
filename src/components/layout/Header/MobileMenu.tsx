@@ -21,7 +21,7 @@ type MobileMenuProps = {
 
 const MobileMenu = ({ navigation, className, site_title }: MobileMenuProps) => {
   return (
-    <div className={cn('md:hidden text-primary-foreground', className)}>
+    <div className={cn('text-primary-foreground md:hidden', className)}>
       <Sheet>
         <SheetTrigger className={cn(buttonVariants({ variant: 'link' }))}>
           <MenuIcon />

@@ -3,6 +3,7 @@ import Section from '@/components/layout/Section'
 import { Content } from '@prismicio/client'
 import { SliceComponentProps } from '@prismicio/react'
 import { cn } from '@/lib/utils'
+import React from 'react'
 
 /**
  * Props for `RichText`.
@@ -12,7 +13,7 @@ export type RichTextProps = SliceComponentProps<Content.RichTextSlice>
 /**
  * Component for "RichText" Slices.
  */
-const RichText = ({ slice }: RichTextProps): JSX.Element => {
+const RichText = ({ slice }: RichTextProps): React.JSX.Element => {
   return (
     <Section
       data-slice-type={slice.slice_type}

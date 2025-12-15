@@ -1,3 +1,4 @@
+import React from 'react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/prismicio'
 import { ImageField, SelectField, asText, isFilled } from '@prismicio/client'
@@ -24,7 +25,7 @@ const ContentList = async ({
   display = 5,
   fallbackItemImage,
   page = 1,
-}: ContentListProps): Promise<JSX.Element> => {
+}: ContentListProps): Promise<React.JSX.Element> => {
   const client = createClient()
   let prismicData
 
@@ -43,13 +44,13 @@ const ContentList = async ({
     <>
       <ul>
         {results.length > 0 &&
-          results.map((item) => {
+          results.map(item => {
             return (
               <li
                 key={item.id}
-                className="grid lg:grid-cols-5 border-t border-t-secondary py-10 group"
+                className="group grid border-t border-t-secondary py-10 lg:grid-cols-5"
               >
-                <div className="flex justify-center items-center lg:-mr-4 lg:col-span-2 group-hover:lg:translate-x-2 transition duration-300 ease-in-out">
+                <div className="flex items-center justify-center transition duration-300 ease-in-out lg:col-span-2 lg:-mr-4 group-hover:lg:translate-x-2">
                   <Link href={item.url || '#'}>
                     <PrismicNextImage
                       field={
@@ -61,12 +62,16 @@ const ContentList = async ({
                     />
                   </Link>
                 </div>
-                <Card className="lg:col-span-3 lg:-ml-4 bg-background/80 backdrop-blur group-hover:lg:-translate-x-2 transition duration-300 ease-in-out">
+                <Card className="bg-background/80 backdrop-blur transition duration-300 ease-in-out lg:col-span-3 lg:-ml-4 group-hover:lg:-translate-x-2">
                   <CardHeader>
                     <PrismicRichText
                       field={item.data.title}
                       components={{
-                        heading1: ({ children }) => (
+                        heading1: ({
+                          children,
+                        }: {
+                          children: React.ReactNode
+                        }) => (
                           <Heading as="h2" size="3xl">
                             {children}
                           </Heading>

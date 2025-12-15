@@ -3,6 +3,7 @@ import Heading from '@/components/typography/Heading'
 import { PrismicRichText } from '@/components/typography/PrismicRichText'
 import { Content, isFilled } from '@prismicio/client'
 import { SliceComponentProps } from '@prismicio/react'
+import React from 'react'
 
 /**
  * Props for `FooterHeading`.
@@ -12,7 +13,7 @@ export type FooterHeadingProps = SliceComponentProps<Content.FooterHeadingSlice>
 /**
  * Component for "FooterHeading" Slices.
  */
-const FooterHeading = ({ slice }: FooterHeadingProps): JSX.Element => {
+const FooterHeading = ({ slice }: FooterHeadingProps): React.JSX.Element => {
   return (
     <Section
       data-slice-type={slice.slice_type}

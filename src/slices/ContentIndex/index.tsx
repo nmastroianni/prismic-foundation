@@ -3,6 +3,7 @@ import Section from '@/components/layout/Section'
 import { Content, isFilled } from '@prismicio/client'
 import { SliceComponentProps } from '@prismicio/react'
 import { LoaderCircle } from 'lucide-react'
+import React from 'react'
 import { Suspense } from 'react'
 
 /**
@@ -15,7 +16,10 @@ type contextProps = {
 /**
  * Component for "ContentIndex" Slices.
  */
-const ContentIndex = ({ slice, context }: ContentIndexProps): JSX.Element => {
+const ContentIndex = ({
+  slice,
+  context,
+}: ContentIndexProps): React.JSX.Element => {
   const { page } = context as contextProps
   return (
     <Section

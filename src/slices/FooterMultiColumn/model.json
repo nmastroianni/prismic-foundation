@@ -26,9 +26,7 @@
           "config": {
             "label": "Layout",
             "select": "document",
-            "customtypes": [
-              "footer_multi_column"
-            ]
+            "customtypes": ["footer_multi_column"]
           }
         }
       },

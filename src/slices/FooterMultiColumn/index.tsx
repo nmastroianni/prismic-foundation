@@ -19,7 +19,9 @@ export type FooterMultiColumnProps =
 /**
  * Component for "FooterMultiColumn" Slices.
  */
-const FooterMultiColumn = ({ slice }: FooterMultiColumnProps): JSX.Element => {
+const FooterMultiColumn = ({
+  slice,
+}: FooterMultiColumnProps): React.JSX.Element => {
   const primary = slice.primary as FooterMultiColumnSliceDefaultPrimary
   const multiColumn = primary.layout as unknown as FooterMultiColumnDocument
   const cols =
@@ -50,7 +52,7 @@ const FooterMultiColumn = ({ slice }: FooterMultiColumnProps): JSX.Element => {
       )}
       {cols > 0 && (
         <div
-          className={cn('my-4 grid lg:my-8 gap-y-4 lg:gap-x-8', {
+          className={cn('my-4 grid gap-y-4 lg:my-8 lg:gap-x-8', {
             'lg:grid-cols-2': cols === 2,
             'lg:grid-cols-3': cols === 3,
           })}

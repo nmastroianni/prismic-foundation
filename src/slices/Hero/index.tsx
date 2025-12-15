@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
+import React from 'react'
 
 /**
  * Props for `Hero`.
@@ -15,14 +16,14 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>
 /**
  * Component for "Hero" Slices.
  */
-const Hero = ({ slice, index }: HeroProps): JSX.Element => {
+const Hero = ({ slice, index }: HeroProps): React.JSX.Element => {
   return (
     <Section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={cn('text-primary-foreground relative', {
+      className={cn('relative text-primary-foreground', {
         'bg-primary': slice.variation === 'default',
-        'lg:h-[calc(100vh-64px)] lg:min-h-[750px]':
+        'lg:h-[calc(100vh-64px)] lg:min-h-187.5':
           slice.variation !== 'contentHeight',
       })}
     >
@@ -38,10 +39,10 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
       )}
       <div
         className={cn(
-          'mx-auto my-8 flex max-w-screen-xl flex-col items-center justify-center rounded-lg p-6 lg:p-12 backdrop-blur',
+          'mx-auto my-8 flex max-w-(--breakpoint-xl) flex-col items-center justify-center rounded-lg p-6 backdrop-blur lg:p-12',
           {
             'bg-primary/80': slice.variation !== 'default',
-          }
+          },
         )}
       >
         {isFilled.richText(slice.primary.heading) && (
@@ -61,7 +62,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
             field={slice.primary.description}
             components={{
               paragraph: ({ children }) => (
-                <p className="text-primary-foreground max-w-prose my-3 text-sm md:text-lg lg:text-xl">
+                <p className="my-3 max-w-prose text-sm text-primary-foreground md:text-lg lg:text-xl">
                   {children}
                 </p>
               ),

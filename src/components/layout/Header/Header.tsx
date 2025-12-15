@@ -1,7 +1,7 @@
 import { createClient } from '@/prismicio'
 import Navbar from './Navbar'
 
-const Header = async (): Promise<JSX.Element> => {
+const Header = async (): Promise<React.JSX.Element> => {
   const client = createClient()
   const settings = await client.getSingle('settings')
   const layout = await client.getSingle('layout', {
